@@ -1,0 +1,13 @@
+<ConfigClass name="UWLConfiguration" configurable="com.sapportals.config.plugin.default_fs.Configurable">
+    <attribute name="name" type="string" mandatory="true"/>
+	<attribute name="maxCreatedThreads" type="int" mandatory="true"/>
+	<attribute name="timeout" type="int" mandatory="true"/>
+	<attribute name="SystemIdentifier" type="string" mandatory="false"/>
+   	<attribute name="defaultCacheValidityPeriod" type="int" mandatory="false"/>
+   	<attribute name="defaultCustomAttributesCacheValidityPeriod" type="int" mandatory="false"/>
+   	<attribute name="defaultExecutionMode" type="enum" values="optimistic,pessimistic" mandatory="true" default="optimistic"/>
+	<attribute name="userFormat" type="enum" values="fullName,userId,empty" mandatory="true" default="fullName"/>
+	<attribute name="dataSourceName" type="string" mandatory="false"/>
+	<attribute name="uwlIviewsPath" type="string" mandatory="true"/>
+	<attribute name="uwlUserEditorType" type="enum" values="HTML,Text" mandatory="true" default="HTML"/>
+</ConfigClass>

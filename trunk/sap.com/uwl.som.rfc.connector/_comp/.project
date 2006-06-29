@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>LocalDevelopment~uwl.som.rfc.connector~sap.com</name>
+	<comment>SAP Development Component Project</comment>
+	<projects>
+		<project>LocalDevelopment~uwl.som.extlib~sap.com</project>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>com.sap.ep.applicationDevelopment.portalProjectNature</nature>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+		<nature>com.sap.ide.eclipse.component.provider.dcnature</nature>
+	</natures>
+</projectDescription>

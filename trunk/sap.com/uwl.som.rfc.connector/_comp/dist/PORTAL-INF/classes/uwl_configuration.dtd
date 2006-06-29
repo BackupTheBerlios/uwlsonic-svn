@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- UWL Configuration can have 0 or 1 Item types and views tag -->
+<!ELEMENT UWLConfiguration (DescriptionBundles?, Actions?, ItemTypes?, Views?, GlobalDisplayAttributes?, NavigationNode?)>
+<!ATTLIST UWLConfiguration
+	version CDATA "1.0"
+>
+
+<!ELEMENT ItemTypes (ItemType*)>
+<!ELEMENT Views (View*)>
+
+<!-- Item type has 0 or 1 of other tags. since it could be inherited there is no need to specify all -->
+
+<!ELEMENT ItemType (Caching?, ItemTypeCriteria?, CustomAttributes?, Actions?, Menu?)>
+
+<!ATTLIST ItemType
+	name NMTOKEN #REQUIRED
+	connector CDATA #REQUIRED
+	defaultView NMTOKEN #REQUIRED
+	defaultAction NMTOKEN "viewDetail"
+	executionMode (optimistic|pessimistic|default) "default"
+>
+
+<!ELEMENT Caching EMPTY>
+<!ATTLIST Caching
+	refreshPeriod NMTOKEN "default"
+	expiryTime NMTOKEN "default"
+>
+
+<!-- type criteria has 0 or 1 Compound Expression -->
+<!ELEMENT ItemTypeCriteria (CompoundExpression?)>
+<!ATTLIST ItemTypeCriteria
+	connector CDATA #IMPLIED	
+	externalType CDATA #IMPLIED
+	systemId CDATA #IMPLIED
+>
+
+<!ELEMENT CompoundExpression (Expression*, CompoundExpression*, Descriptions? )>
+<!ATTLIST CompoundExpression 
+	logicalOperation (AND | OR) "AND"
+	referenceBundle NMTOKEN #IMPLIED
+	defaultViewFilter (yes|no) "no"
+>
+
+<!ELEMENT Expression EMPTY>
+<!ATTLIST Expression
+	name NMTOKEN #REQUIRED
+	comparator (Equals | LessThan | LessThanOrEquals | GreaterThan | GreaterThanOrEquals | NotEquals | StartsWith | NotStartsWith | EndsWith | NotEndsWith | Contains | NotContains| ContainedBy ) "Equals"
+	value CDATA #REQUIRED
+>
+
+<!ELEMENT DescriptionBundles (DescriptionBundle*)>
+
+<!ELEMENT DescriptionBundle (ShortDescriptions?, LongDescriptions?)>
+<!ATTLIST DescriptionBundle 
+  name NMTOKEN #REQUIRED
+  default CDATA #REQUIRED
+>
+
+<!ELEMENT Descriptions (ShortDescriptions?, LongDescriptions?)>
+<!ATTLIST Descriptions
+	  default CDATA #REQUIRED >
+	  
+<!ELEMENT LongDescriptions (Description*)>
+<!ELEMENT ShortDescriptions (Description*)>
+
+<!ELEMENT Description EMPTY>
+<!ATTLIST Description
+	Language NMTOKEN #REQUIRED
+	Description CDATA #REQUIRED
+>
+
+<!ELEMENT CustomAttributes (CustomAttributeSource*)>
+<!ELEMENT CustomAttributeSource (Attribute*)>
+
+<!ATTLIST CustomAttributeSource
+	id (ABAP_BOR | WEBFLOW_CONTAINER | JAVA_WORKFLOW | UM | ALERT_CONTAINER ) "ABAP_BOR"
+	objectIdHolder NMTOKEN #REQUIRED
+	objectType NMTOKEN #REQUIRED
+	cacheValidity NMTOKEN "final"
+>
+
+<!ELEMENT Attribute EMPTY>
+<!ATTLIST Attribute
+	name NMTOKEN #REQUIRED
+	type (double | int | string | date) "string"
+	displayName CDATA #REQUIRED
+>
+
+<!ELEMENT Properties (Property*)>
+<!ELEMENT Property EMPTY>
+<!ATTLIST Property
+	name CDATA #REQUIRED
+	value CDATA #REQUIRED
+>
+
+<!ELEMENT Actions (Action* )>
+
+<!ELEMENT Action (Properties?,Descriptions?,ConfirmDescriptions?,CompoundExpression?)>
+<!ATTLIST Action
+	name CDATA #IMPLIED
+	reference CDATA #IMPLIED
+	groupAction (yes|no) "no"
+	userDecision CDATA #IMPLIED
+	handler CDATA #IMPLIED
+	referenceBundle NMTOKEN #IMPLIED 
+	returnToDetailViewAllowed (yes|no) "yes"
+	launchInNewWindow (yes|no) "no"
+	launchNewWindowName CDATA #IMPLIED 
+	launchNewWindowFeatures CDATA #IMPLIED 
+>
+
+<!ELEMENT ConfirmDescriptions (Descriptions?)>
+<!ATTLIST ConfirmDescriptions
+	referenceBundle NMTOKEN #IMPLIED 
+>
+
+<!ELEMENT View (Descriptions?,DisplayAttributes?,AllowedFilters?, Actions?)>
+
+<!ATTLIST View
+	name CDATA #REQUIRED
+	width CDATA #REQUIRED
+	supportedItemTypes CDATA #REQUIRED
+	columnOrder CDATA #REQUIRED
+	sortby CDATA #IMPLIED
+	selectionMode (NONE | SINGLESELECT | MULTISELECT) "NONE"
+	tableDesign (STANDARD | ALTERNATING  | TRANSPARENT ) "STANDARD"
+	visibleRowCount NMTOKEN #IMPLIED
+	defaultHeaderName CDATA #IMPLIED
+	headerVisible (yes|no) "no"
+	tableNavigationFooterVisible (yes|no) "no"
+	tableNavigationHeaderVisible (yes|no) "no"
+	tableNavigationType (CUSTOMNAV | STANDARD | POWERNAV | BRIEFNAV) "CUSTOMNAV"
+	actionRef CDATA #IMPLIED
+	refresh CDATA #IMPLIED
+	dueDateSevere CDATA #IMPLIED
+	dueDateWarning CDATA #IMPLIED
+	emphasizedItems (new|unread|none) "unread"
+	displayOnlyDefinedAttributes (yes|no) "yes"
+	actionPosition (top | bottom | both) "top"
+	dynamicCreationAllowed (yes|no) "yes"
+	referenceBundle NMTOKEN #IMPLIED
+	queryRange (undefined | LastWeek | LastMonth| Last_3_Months | LastYear ) "undefined" 
+>
+	
+<!ELEMENT AllowedFilters (CompoundExpression*)>
+<!ELEMENT DisplayAttributes (DisplayAttribute*)>
+
+<!ELEMENT DisplayAttribute (Descriptions?, ImageMapping?, Menu?)>
+<!ATTLIST DisplayAttribute
+	name CDATA #REQUIRED
+	type (double | int | percentage | string | date | time | datetime | checkbox | radiobutton | link | user | image | dropdownlistbox | progressindicator | people) "string"	
+	width CDATA #IMPLIED
+	format (short | medium | long | full | default) "default"	
+	sortable (yes|no) "no" 
+	actionRef CDATA #IMPLIED
+	vAlign (BASELINE | BOTTOM | MIDDLE | TOP) "BASELINE"	
+	hAlign (CENTER | CHAR | LEFT | RIGHT | JUSTIFY) "LEFT"	
+	referenceBundle NMTOKEN #IMPLIED 
+	maxTextWidth NMTOKEN #IMPLIED
+	headerVisible (yes|no) "yes"
+>
+
+<!ELEMENT ImageMapping (ImageMap*)>
+<!ATTLIST ImageMapping
+	default CDATA #REQUIRED
+>
+<!ELEMENT ImageMap (Descriptions?)>
+<!ATTLIST ImageMap
+	value CDATA #REQUIRED
+	imageName CDATA #REQUIRED
+	referenceBundle NMTOKEN #IMPLIED 
+>
+
+<!ELEMENT Menu (MenuItem*)>
+<!ELEMENT MenuItem (Actions?,Descriptions?,MenuItem*)>
+<!ATTLIST MenuItem
+	name CDATA #REQUIRED
+	actionRef CDATA #IMPLIED
+	referenceBundle NMTOKEN #IMPLIED 
+>
+
+<!ELEMENT GlobalDisplayAttributes ( DisplayAttribute* ) >
+
+<!ELEMENT NavigationNode  (Descriptions?,NavigationNode*) >
+<!ATTLIST NavigationNode
+	  name CDATA #REQUIRED	
+	  view CDATA ""
+	  viewNamespace CDATA ""
+	  referenceGroup CDATA ""
+	  groupId CDATA ""
+	  reference CDATA ""	
+  	  roles CDATA #IMPLIED
+  	  referenceBundle NMTOKEN #IMPLIED 
+	  global (yes|no) "no" >	
+	  

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE UWLConfiguration PUBLIC '-//SAP//UWL1.0//EN' 'uwl_configuration.dtd'>
+<UWLConfiguration>
+	<ItemTypes>
+		<ItemType name="uwl.notification.som" connector="SomProviderConnector" defaultView="SomView" defaultAction="showDetails">
+			<Actions>
+				<Action name="delete" reference="delete"/>
+				<Action reference="forward"/>
+			</Actions>
+		</ItemType>
+	</ItemTypes>
+	<Views>
+		<View name="SomView" width="98%" supportedItemTypes="uwl.notification.som" columnOrder="status, subject, priority, creatorId, createdDate, attachmentCount, detailIcon" sortby="createdDate:descend, priority:descend" emphasizedItems="unread" selectionMode="MULTISELECT" tableDesign="STANDARD" visibleRowCount="10" headerVisible="yes" tableNavigationFooterVisible="yes" tableNavigationType="CUSTOMNAV" actionRef="">
+			<Descriptions default="SAP Office Mails"/>
+			<DisplayAttributes>
+				<DisplayAttribute name="createdDate" type="datetime" width="" sortable="yes" format="medium" referenceBundle="sent_date" hAlign="LEFT" vAlign="BASELINE" maxTextWidth="0" headerVisible="yes"/>
+				<DisplayAttribute name="creatorId" type="people" width="" sortable="yes" format="default" referenceBundle="from" hAlign="LEFT" vAlign="BASELINE" maxTextWidth="0" headerVisible="yes"/>
+			</DisplayAttributes>
+			<Actions>
+				<Action reference="delete"/>
+				<Action reference="forward"/>
+			</Actions>
+		</View>
+	</Views>
+</UWLConfiguration>

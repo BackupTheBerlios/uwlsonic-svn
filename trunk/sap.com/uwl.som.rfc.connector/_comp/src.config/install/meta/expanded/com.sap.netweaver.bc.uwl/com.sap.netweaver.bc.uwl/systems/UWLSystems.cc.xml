@@ -1,0 +1,7 @@
+<ConfigClass name="UWLSystems" configurable="com.sapportals.config.plugin.default_fs.Configurable">
+    <attribute name="name" type="string" mandatory="true"/>
+	<attribute name="confSystem" type="string" mandatory="true"/>
+	<attribute name="connector" type="enum" values="WebFlowConnector,ActionInboxConnector,AdHocWorkflowConnector,AlertConnector,SomProviderConnector" mandatory="true" default="AdHocWorkflowConnector"/>
+	<attribute name="confGroup" type="string" mandatory="false"/>
+	<attribute name="confWDSystem" type="string" mandatory="false"/>
+</ConfigClass>

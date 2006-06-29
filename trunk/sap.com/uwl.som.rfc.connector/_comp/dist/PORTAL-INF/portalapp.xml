@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<application>
+  <application-config>
+    <property name="ServicesReference" value="usermanagement,com.sap.netweaver.bc.uwl" /> 
+    <property name="releasable" value="true"/>
+  </application-config>
+  <components/>
+  <services>
+    <service name="SomRegistrationService" alias="SomRegistrationService">
+      <service-config>
+        <property name="className" value="com.sap.uwl.som.portal.SomRegistrationService"/>
+        <property name="startup" value="true"/>
+        <property name="SafetyLevel" value="no_safety"/>
+      </service-config>
+    </service>
+  </services>
+</application>
