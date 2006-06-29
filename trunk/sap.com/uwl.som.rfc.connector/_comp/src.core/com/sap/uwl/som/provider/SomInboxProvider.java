@@ -46,7 +46,7 @@ import com.sapportals.portal.ivs.cg.ConnectionProperties;
  * 
  * @author Lars Rueter, Thilo Brandt, SAP AG
  */
-public class SomInboxProvider {
+public class  SomInboxProvider {
 
 	private static final Location loc = Location.getLocation(SomInboxProvider.class);
 
